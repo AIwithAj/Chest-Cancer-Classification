@@ -28,7 +28,7 @@ class ConfigurationManager:
 
         return data_ingestion_config
       
-       def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
         
         create_directories([config.root_dir])
