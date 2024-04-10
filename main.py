@@ -1,7 +1,8 @@
 from src.Cancer_Classification import logger
 from src.Cancer_Classification.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from src.Cancer_Classification.pipeline.stage02_preparebasemodel import PrepareBaseModelTrainingPipeline
-
+from src.Cancer_Classification.pipeline.stage03_model_train import ModelTrainingPipeline
+# from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
 
 
@@ -27,6 +28,36 @@ try:
    prepare_base_model = PrepareBaseModelTrainingPipeline()
    prepare_base_model.main()
    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+
+
+STAGE_NAME = "Training"
+try: 
+   logger.info(f"*******************")
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   model_trainer = ModelTrainingPipeline()
+   model_trainer.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+
+
+
+STAGE_NAME = "Evaluation stage"
+try:
+   logger.info(f"*******************")
+   logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+   model_evalution = EvaluationPipeline()
+   model_evalution.main()
+   logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+
 except Exception as e:
         logger.exception(e)
         raise e
